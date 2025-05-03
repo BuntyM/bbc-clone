@@ -12,7 +12,7 @@ This clone implements the following functionalities:
     *   Homepage structure resembling BBC.com's typical 3-column layout (as of the target design).
     *   Navigation bar and Footer mimicking BBC's design.
     *   Individual Article pages displaying title, image (if available), and content.
-    *   Dark Mode / Light Mode theme toggle with persistent preference using `localStorage`.
+    *   Dark Mode / Light Mode theme support with persistent preference using `localStorage`.
 
 2.  **News Fact Checker (Integrated AI & MCP):**
     *   A dedicated "Fact Check" page accessible from the main navigation.
