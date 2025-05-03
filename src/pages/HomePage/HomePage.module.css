@@ -1,0 +1,95 @@
+/* Ensure container is visible and takes space */
+.homePageContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-l) var(--space-m);
+  display: block; /* Explicitly block */
+  visibility: visible; /* Explicitly visible */
+  opacity: 1; /* Explicitly opaque */
+}
+
+/* --- Main 3-Column Grid --- */
+.mainGrid {
+  display: grid; /* <<< MUST be grid or flex to show children */
+  visibility: visible; /* Ensure visibility */
+  opacity: 1;
+  grid-template-columns: 1.5fr 3fr 1.5fr;
+  gap: var(--space-l);
+  margin-bottom: var(--space-xl);
+  width: 100%; /* Ensure it takes width */
+}
+
+/* Column 1: Left Pair */
+.leftPairColumn {
+  display: flex; /* Use flex to stack children */
+  flex-direction: column;
+  gap: 0; /* Use border/margin/padding */
+  visibility: visible;
+  opacity: 1;
+}
+.leftPairColumn > article:not(:last-child) {
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: var(--space-m);
+    margin-bottom: var(--space-m);
+}
+body.dark-mode .leftPairColumn > article:not(:last-child) {
+    border-bottom-color: var(--border-subtle);
+}
+
+
+/* Column 2: Center Hero */
+.centerHeroColumn {
+  display: block; /* Ensure it's displayed */
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Column 3: Right List */
+.rightListColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* Use border/margin/padding */
+  visibility: visible;
+  opacity: 1;
+}
+.rightListColumn > article:not(:last-child) {
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: var(--space-m);
+    margin-bottom: var(--space-m);
+}
+body.dark-mode .rightListColumn > article:not(:last-child) {
+    border-bottom-color: var(--border-subtle);
+}
+
+/* Fallback Message Style */
+.missingContent {
+    color: var(--text-secondary);
+    font-style: italic;
+    padding: var(--space-l);
+    text-align: center;
+    border: 1px dashed var(--border-medium);
+    border-radius: 4px;
+    margin-top: var(--space-m);
+}
+body.dark-mode .missingContent {
+    color: var(--text-secondary);
+    border-color: var(--border-medium);
+}
+
+
+/* --- Section Titles (If Used Below) --- */
+.sectionTitle,
+.sectionTitleWithBorder {
+  font-family: var(--font-secondary);
+  font-weight: bold;
+  font-size: var(--fs-xl);
+  margin-bottom: var(--space-l);
+  padding-top: var(--space-xl);
+  display: block; /* Ensure titles are displayed */
+}
+.sectionTitleWithBorder {
+   padding-top: var(--space-m);
+   padding-bottom: var(--space-s);
+   border-top: 2px solid var(--text-primary);
+   margin-top: var(--space-xl);
+}

@@ -1,0 +1,27 @@
+/* src/styles/global.css */
+@import './variables.css';
+
+/* Basic Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: var(--fs-base); }
+
+body {
+  font-family: var(--font-primary);
+  color: var(--text-primary); /* Use variable */
+  background-color: var(--bg-page); /* Use variable */
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Add transition for background color change */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+img { max-width: 100%; display: block; height: auto; }
+/* Optional: Dim images slightly in dark mode */
+body.dark-mode img {
+    /* filter: brightness(0.9) contrast(0.95); */ /* Uncomment to test */
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; padding: 0; }

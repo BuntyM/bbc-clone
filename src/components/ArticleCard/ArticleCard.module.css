@@ -1,0 +1,95 @@
+/* --- Base Card Style --- */
+.articleCard {
+    position: relative; /* For modal positioning context if not using Portal */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Common Styles --- */
+.newsImgBox { margin-bottom: var(--space-m); display: block; }
+.newsImgBox img { width: 100%; display: block; object-fit: cover; border-radius: 2px; }
+.newsContent { display: flex; flex-direction: column; flex-grow: 1; padding: 0; }
+.newsTitle { font-family: var(--font-secondary); font-weight: bold; line-height: 1.25; color: var(--text-primary); margin: 0 0 var(--space-s) 0; font-size: 1.25em; }
+.newsTitle a { color: inherit; text-decoration: none; }
+.newsTitle a:hover { text-decoration: underline; }
+.newsDesc { font-family: var(--font-primary); font-size: var(--fs-medium); color: var(--text-primary); line-height: 1.45; margin: 0 0 var(--space-m) 0; }
+
+/* --- Footer Wrapper (Optional, might not be needed if modal is Portal) --- */
+.footerWrapper {
+    margin-top: auto; /* Pushes block to bottom */
+}
+
+/* Combined Info Footer */
+.infoFooter {
+    font-size: var(--fs-small); font-family: var(--font-primary); color: var(--text-secondary);
+    display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-s);
+    padding-top: var(--space-s); /* Space above info row */
+    line-height: 1.2;
+}
+/* Dark mode border */
+body.dark-mode .infoFooter {
+    border-top-color: var(--border-subtle);
+}
+/* Remove border on Hero variant */
+.centerHeroItem .infoFooter {
+     border-top: none;
+     padding-top: var(--space-xs); /* Less padding if no border */
+     margin-top: 0; /* Follow description */
+}
+
+
+.timespan { white-space: nowrap; }
+.newsPlace { font-weight: bold; color: var(--text-subtle); }
+.separator { color: var(--border-medium); margin: 0 calc(var(--space-s) * -0.3); display: inline-flex; align-items: center; line-height: 1; }
+.ttsButton { background: none; border: none; padding: 0; margin: 0; cursor: pointer; color: var(--text-subtle); font-size: 1.2em; display: inline-flex; align-items: center; line-height: 1; }
+.ttsButton:hover { color: var(--text-primary); }
+.ttsButton:disabled { opacity: 0.5; cursor: not-allowed; }
+.readingTime { font-size: var(--fs-small); color: var(--text-secondary); font-style: normal; white-space: nowrap; line-height: 1; }
+.viewCount { display: inline-flex; align-items: center; gap: var(--space-xs); white-space: nowrap; color: var(--text-secondary); line-height: 1; }
+.viewCountIcon { font-size: 1em; }
+.pdfButton { background: none; border: none; padding: 0; margin: 0; cursor: pointer; color: var(--text-subtle); display: inline-flex; align-items: center; gap: var(--space-xs); line-height: 1; font-size: 1.1em; }
+.pdfButton:hover { color: var(--text-primary); }
+.pdfButton:disabled { opacity: 0.5; cursor: not-allowed; }
+.pdfButtonIcon { font-size: 1em; display: block; }
+.pdfButtonCount { font-size: var(--fs-small); color: var(--text-secondary); margin-left: 2px; }
+.summarizeButton { background: none; border: none; padding: 0; margin: 0; cursor: pointer; color: var(--text-subtle); font-size: 1.1em; display: inline-flex; align-items: center; line-height: 1; }
+.summarizeButton:hover { color: var(--text-primary); }
+.summarizeButton:disabled { opacity: 0.5; cursor: not-allowed; }
+
+
+/* --- Summary Modal Styles --- */
+.summaryModalOverlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7); display: flex; align-items: center; justify-content: center; z-index: 1100; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; animation: fadeIn 0.3s ease forwards; }
+@keyframes fadeIn { from { opacity: 0; visibility: hidden; } to { opacity: 1; visibility: visible; } }
+.summaryModalContent { background-color: var(--bg-page); color: var(--text-primary); padding: var(--space-xl); border-radius: 6px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); max-width: 550px; width: 90%; position: relative; transform: translateY(-20px); opacity: 0; transition: transform 0.3s ease-out, opacity 0.3s ease-out; animation: slideInFadeIn 0.3s 0.1s ease-out forwards; display: flex; flex-direction: column; }
+@keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } } /* Note: Keyframes renamed in previous step, ensure consistency or remove */
+@keyframes slideInFadeIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } } /* Using Slide+Fade */
+.summaryModalTitle { font-family: var(--font-secondary); font-size: 1.4em; font-weight: bold; color: var(--text-primary); margin: 0 0 var(--space-m) 0; padding: 0; text-align: center; width: 100%; }
+.summaryModalBody { margin-bottom: var(--space-m); max-height: 60vh; overflow-y: auto; padding-right: var(--space-s); }
+.summaryModalBody p { font-family: var(--font-primary); font-size: var(--fs-medium); line-height: 1.6; color: var(--text-secondary); margin: 0; }
+.summaryModalGeneratedBy { font-size: var(--fs-small); color: var(--text-subtle); text-align: center; margin-top: auto; padding-top: var(--space-m); border-top: 1px solid var(--border-subtle); width: 100%; }
+.summaryModalClose { position: absolute; top: var(--space-m); right: var(--space-m); background: none; border: none; font-size: 1.3em; color: var(--text-subtle); cursor: pointer; padding: var(--space-xs); line-height: 1; transition: color var(--transition-fast); }
+.summaryModalClose:hover { color: var(--text-primary); }
+body.dark-mode .summaryModalContent { background-color: #282828; color: var(--text-primary); border: 1px solid var(--border-strong); box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
+body.dark-mode .summaryModalTitle { color: var(--text-primary); }
+body.dark-mode .summaryModalBody p { color: var(--text-secondary); }
+body.dark-mode .summaryModalGeneratedBy { color: var(--text-subtle); border-top-color: var(--border-medium); }
+body.dark-mode .summaryModalClose { color: var(--text-subtle); }
+body.dark-mode .summaryModalClose:hover { color: var(--text-primary); }
+
+/* --- Variant Specific Styles --- */
+.leftPairItem { display: flex; flex-direction: column; }
+.leftPairItem .newsContent { }
+.centerHeroItem { }
+.centerHeroItem .newsImgBox { margin-bottom: var(--space-m); }
+.centerHeroItem .heroContentWrapper { position: relative; padding-left: var(--space-s); }
+.centerHeroItem .newsTitle { font-size: var(--fs-hero-title); line-height: 1.1; margin-bottom: var(--space-s); }
+.centerHeroItem .newsDesc { font-size: var(--fs-medium); color: var(--text-primary); line-height: 1.45; margin-bottom: var(--space-m); }
+/* .centerHeroItem .infoFooter rule removed border correctly */
+.centerHeroItem .liveBadge { /* ... */ }
+.centerHeroItem .liveBadge::before { /* ... */ }
+.rightListItem { }
+.rightListItem .newsContent { }
+.rightListItem .newsTitle { font-size: 1.1em; margin-bottom: var(--space-xs); }
+.rightListItem .newsDesc { color: var(--text-primary); }
+.default { }
+/* .default .infoFooter border handled by common rule */

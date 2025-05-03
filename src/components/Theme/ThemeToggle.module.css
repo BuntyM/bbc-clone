@@ -1,0 +1,17 @@
+.themeToggleButton {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.3em; 
+    padding: var(--space-xs);
+    margin-left: var(--space-s); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition-fast);
+  }
+  
+  .themeToggleButton:hover {
+    color: var(--text-primary); 
+  }

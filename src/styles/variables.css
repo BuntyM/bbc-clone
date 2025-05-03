@@ -1,0 +1,98 @@
+/* src/styles/variables.css */
+:root {
+    /* === Fonts === */
+    --font-primary: 'Reith Sans', Arial, Helvetica, sans-serif;
+    --font-secondary: 'Reith Serif', Georgia, 'Times New Roman', Times, serif;
+  
+    /* === Font Sizes === */
+    --fs-base: 14px;
+    --fs-small: 0.87em;
+    --fs-medium: 1em;
+    --fs-large: 1.2em;
+    --fs-xl: 1.3em;
+    --fs-xxl: 1.4em;
+    --fs-xxxl: 2em;
+    --fs-hero-title: 2.2em; /* Specific large title */
+    --fs-hero-title-small: 1.8em;
+  
+    /* === Spacing === */
+    --space-xs: 5px;
+    --space-s: 10px;
+    --space-m: 15px;
+    --space-l: 20px;
+    --space-xl: 25px;
+    --space-xxl: 60px;
+  
+    /* === LIGHT MODE COLORS (Default) === */
+    --bg-page: #ffffff;
+    --bg-subtle: #f2f2f2;
+    --bg-interactive: #e6e6e6;
+    --bg-interactive-hover: #d9d9d9;
+    --bg-overlay: rgba(0, 0, 0, 0.5);
+    --bg-header: #ffffff;
+    --bg-footer: #f2f2f2;
+    --bg-sidebar: #ffffff;
+    --bg-live-badge: #bb1919;
+    --bg-button-primary: #000000;
+    --bg-button-primary-text: #ffffff;
+    --bg-button-secondary: transparent;
+    --bg-button-secondary-text: #000000;
+  
+    --text-primary: #111111;
+    --text-secondary: #656565; /* Metadata, descriptions */
+    --text-subtle: #737373;
+    --text-link: #111111;
+    --text-link-hover: #bb1919;
+    --text-accent: #bb1919; /* BBC Red */
+    --text-button-primary: var(--bg-button-primary-text);
+    --text-button-secondary: var(--bg-button-secondary-text);
+    --text-inverted: #ffffff; /* For dark backgrounds like button */
+  
+    --border-subtle: #eee;
+    --border-medium: #d9d9d9;
+    --border-strong: #cccccc;
+    --border-dark: #000000; /* For specific elements like nav underline */
+    --border-interactive: #cccccc;
+  
+    --shadow-standard: 0 2px 5px rgba(0,0,0,0.1);
+  
+    /* === Transition === */
+    --transition-fast: all 0.2s ease-in-out;
+  }
+  
+  
+  /* === DARK MODE COLORS === */
+  /* Apply dark mode variables when the .dark-mode class is present on body */
+  body.dark-mode {
+    --bg-page: #1a1a1a; /* Dark background */
+    --bg-subtle: #262626; /* Slightly lighter dark */
+    --bg-interactive: #333333;
+    --bg-interactive-hover: #444444;
+    --bg-overlay: rgba(0, 0, 0, 0.7);
+    --bg-header: #111111; /* Darker header */
+    --bg-footer: #111111; /* Darker footer */
+    --bg-sidebar: #222222;
+    --bg-live-badge: #bb1919; /* Red usually stays */
+    --bg-button-primary: #ffffff; /* Inverted button */
+    --bg-button-primary-text: #000000;
+    --bg-button-secondary: transparent;
+    --bg-button-secondary-text: #eeeeee; /* Light text for secondary */
+  
+    --text-primary: #e0e0e0; /* Light text */
+    --text-secondary: #aaaaaa;
+    --text-subtle: #888888;
+    --text-link: #f0f0f0; /* Slightly brighter link */
+    --text-link-hover: #bb1919; /* Red hover can stay */
+    --text-accent: #bb1919;
+    --text-button-primary: var(--bg-button-primary-text);
+    --text-button-secondary: var(--bg-button-secondary-text);
+    --text-inverted: #111111;
+  
+    --border-subtle: #333333;
+    --border-medium: #444444;
+    --border-strong: #555555;
+    --border-dark: #eeeeee; /* Light underline for nav */
+    --border-interactive: #555555;
+  
+    --shadow-standard: 0 2px 5px rgba(0,0,0,0.3);
+  }

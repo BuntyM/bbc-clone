@@ -1,0 +1,146 @@
+
+.darkModeValues {
+    --dm-text-primary: #e0e0e0; --dm-text-secondary: #aaaaaa; --dm-text-subtle: #888888;
+    --dm-text-link: #f0f0f0; --dm-text-link-hover: #fff;
+    --dm-text-inverted: #111; --dm-text-accent: #bb1919;
+    --dm-bg-page: #1a1a1a; --dm-bg-footer: #111111; --dm-bg-subtle: #2c2c2c;
+    --dm-bg-interactive: #3a3a3a; --dm-bg-interactive-hover: #4a4a4a;
+    --dm-border-subtle: #333333; --dm-border-medium: #444444; --dm-border-strong: #555555;
+}
+
+/* --- Base Light Mode Styles --- */
+.pageContainer { max-width: 800px; margin: var(--space-l) auto; padding: var(--space-l) var(--space-m); color: var(--text-primary); background-color: var(--bg-page); }
+.pageTitle { font-family: var(--font-secondary); font-size: 2em; font-weight: bold; color: var(--text-primary); margin-bottom: var(--space-s); text-align: center; }
+.pageDescription { font-size: var(--fs-small); color: var(--text-secondary); text-align: center; margin-bottom: var(--space-xl); line-height: 1.5; max-width: 600px; margin: 0 auto var(--space-xl); }
+.inputForm { margin-bottom: var(--space-xl); }
+.claimInput { width: 100%; padding: var(--space-m); font-size: var(--fs-large); font-family: var(--font-primary); border: 1px solid var(--border-strong); border-radius: 0; margin-bottom: var(--space-m); background-color: var(--bg-page); color: var(--text-primary); resize: vertical; min-height: 80px; transition: var(--transition-fast); }
+.claimInput:focus { outline: none; border-color: var(--text-primary); }
+.buttonGroup { display: flex; justify-content: center; gap: var(--space-m); }
+.actionButton { padding: var(--space-s) var(--space-l); font-size: var(--fs-medium); font-weight: bold; border: 1px solid transparent; cursor: pointer; display: inline-flex; align-items: center; gap: var(--space-s); transition: var(--transition-fast); }
+.actionButton:disabled { opacity: 0.6; cursor: not-allowed; }
+.submitButton { background-color: var(--text-primary); color: var(--bg-page); border-color: var(--text-primary); }
+.submitButton:hover:not(:disabled) { background-color: var(--text-secondary); border-color: var(--text-secondary); }
+.clearButton { background: transparent; color: var(--text-secondary); border: 1px solid var(--border-medium); }
+.clearButton:hover:not(:disabled) { background-color: var(--bg-subtle); border-color: var(--border-strong); color: var(--text-primary); }
+.loadingIndicator { text-align: center; padding: var(--space-xl); font-style: italic; color: var(--text-secondary); }
+.resultSection { margin-top: var(--space-xl); padding: var(--space-l); background-color: var(--bg-subtle); border: 1px solid var(--border-medium); border-radius: 4px; }
+.resultSection h2 { font-family: var(--font-secondary); font-size: 1.5em; color: var(--text-primary); margin: 0 0 var(--space-l) 0; text-align: center; display: flex; align-items: center; justify-content: center; gap: var(--space-m); border-bottom: 1px solid var(--border-medium); padding-bottom: var(--space-m); }
+.statusIconLarge { font-size: 1.2em; flex-shrink: 0; }
+.analysisBox { margin-bottom: var(--space-l); display: flex; align-items: flex-start; gap: var(--space-m); }
+.analysisText { font-size: var(--fs-medium); line-height: 1.6; color: var(--text-primary); flex-grow: 1; }
+.analysisText p { margin-bottom: var(--space-m); } .analysisText p:last-child { margin-bottom: 0; }
+.analysisText strong { font-weight: bold; }
+.sourceLink { text-decoration: underline; cursor: pointer; font-weight: normal; color: var(--text-accent); }
+.sourceLink:hover { text-decoration: none; color: var(--text-link-hover); }
+.iconTrue { color: #138040; } .iconFalse { color: #C62828; } .iconPartial { color: #D97D00; }
+.iconUnverified { color: var(--text-subtle); } .iconWarning { color: #D97D00; }
+.sourcesDetails { margin-top: var(--space-l); border-top: 1px solid var(--border-medium); padding-top: var(--space-m); }
+.sourcesDetails summary { font-weight: bold; cursor: pointer; color: var(--text-primary); margin-bottom: var(--space-m); display: flex; align-items: center; justify-content: center; gap: var(--space-s); width: 100%; padding: var(--space-xs) 0; list-style: none; transition: color var(--transition-fast); }
+.sourcesDetails summary::-webkit-details-marker { display: none; } .sourcesDetails summary::marker { display: none; }
+.sourcesDetails summary:hover { color: var(--text-link-hover); }
+.sourcesDetails summary svg { transition: transform 0.2s ease; font-size: 0.9em; }
+.sourcesDetails[open] summary svg { transform: rotate(180deg); }
+.searchResultsList { list-style: none; margin: 0; padding: 0; }
+.searchResultItem { padding: var(--space-m) 0; border-bottom: 1px solid var(--border-subtle); }
+.searchResultItem:last-child { border-bottom: none; }
+.searchResultTitle { display: flex; align-items: center; gap: var(--space-s); text-decoration: none; font-weight: bold; color: var(--text-link);}
+.searchResultTitle:hover { text-decoration: underline; color: var(--text-link-hover);}
+.sourceNumber { color: var(--text-secondary); font-weight: normal; margin-right: var(--space-xs); }
+.searchResultSnippet { font-size: var(--fs-small); color: var(--text-secondary); line-height: 1.5; margin: 0; padding-left: calc(var(--space-m) + 1em); }
+.sourcesContent { background-color: var(--bg-page); border: 1px solid var(--border-medium); padding: var(--space-m); border-radius: 4px; max-height: 200px; overflow-y: auto; font-size: 0.9em; color: var(--text-secondary); white-space: pre-wrap; word-wrap: break-word;}
+.searchWarning { font-size: var(--fs-small); font-style: italic; color: var(--text-subtle); }
+.errorBox { background-color: rgba(200, 0, 0, 0.05); border-color: rgba(200, 0, 0, 0.3); color: #C62828; border-radius: 4px;}
+.errorBox h2 { color: inherit; display: flex; align-items: center; justify-content: center; gap: var(--space-s); border-bottom: none; padding-bottom: 0;}
+.errorBox p { color: inherit; text-align: center; }
+.historySection { margin-top: var(--space-xl); padding-top: var(--space-l); border-top: 1px solid var(--border-subtle); }
+.historyToggleWrapper { text-align: center; margin-bottom: var(--space-m); }
+.historyToggle { font-size: var(--fs-medium); font-weight: bold; color: var(--text-link); cursor: pointer; background: none; border: none; padding: var(--space-xs) 0; display: inline-flex; align-items: center; gap: var(--space-s); }
+.historyToggle:hover { color: var(--text-link-hover); }
+.historyList { list-style: none; margin: 0; padding: 0; max-height: 300px; overflow-y: auto; border: 1px solid var(--border-subtle); border-radius: 4px; }
+.historyList li { padding: var(--space-s) var(--space-m); border-bottom: 1px solid var(--border-subtle); cursor: pointer; transition: background-color var(--transition-fast); display: flex; justify-content: space-between; align-items: center; gap: var(--space-m); }
+.historyList li:last-child { border-bottom: none; }
+.historyList li:hover { background-color: var(--bg-subtle); }
+.noHistory { color: var(--text-secondary); font-style: italic; text-align: center; justify-content: center; cursor: default; padding: var(--space-m); }
+.noHistory:hover { background-color: transparent; }
+.historyClaim { flex-grow: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); font-weight: 500; }
+.historyTimestamp { font-size: 0.85em; color: var(--text-secondary); flex-shrink: 0; white-space: nowrap; }
+
+
+/* --- DIRECT DARK MODE OVERRIDES --- */
+/* Apply specific dark mode styles directly using hex codes or dark variables */
+body.dark-mode .pageContainer { color: #e0e0e0; background-color: #1a1a1a; }
+body.dark-mode .pageTitle { color: #e0e0e0; }
+body.dark-mode .pageDescription { color: #aaaaaa; }
+body.dark-mode .claimInput { background-color: #2c2c2c; border-color: #555555; color: #e0e0e0; } /* Use darker bg */
+body.dark-mode .claimInput:focus { border-color: #e0e0e0; }
+body.dark-mode .submitButton { background-color: #e0e0e0; color: #1a1a1a; border-color: #e0e0e0; }
+body.dark-mode .submitButton:hover:not(:disabled) { background-color: #aaaaaa; border-color: #aaaaaa; }
+body.dark-mode .clearButton { background: transparent; color: #aaaaaa; border-color: #555555; }
+body.dark-mode .clearButton:hover:not(:disabled) { background-color: #2c2c2c; border-color: #444444; color: #e0e0e0; }
+body.dark-mode .loadingIndicator { color: #aaaaaa; }
+body.dark-mode .resultSection { background-color: #2c2c2c; border-color: #444444; } /* Use subtle dark */
+body.dark-mode .resultSection h2 { color: #e0e0e0; border-bottom-color: #444444; }
+body.dark-mode .analysisText { color: #e0e0e0; }
+body.dark-mode .analysisText strong { color: #e0e0e0; }
+body.dark-mode .sourceLink { color: #f0f0f0; /* Brighter link */ }
+body.dark-mode .sourceLink:hover { color: #fff; }
+body.dark-mode .iconUnverified { color: #888888; }
+body.dark-mode .sourcesDetails { border-top-color: #444444; }
+body.dark-mode .sourcesDetails summary { color: #e0e0e0; }
+body.dark-mode .sourcesDetails summary:hover { color: #fff; }
+body.dark-mode .searchResultItem { border-bottom-color: #333333; }
+body.dark-mode .searchResultTitle { color: #f0f0f0; }
+body.dark-mode .searchResultTitle:hover { color: #fff; }
+body.dark-mode .sourceNumber { color: #aaaaaa; }
+body.dark-mode .searchResultSnippet { color: #aaaaaa; }
+body.dark-mode .sourcesContent { background-color: #111111; border-color: #444444; color: #aaaaaa; }
+body.dark-mode .searchWarning { color: #888888; }
+body.dark-mode .errorBox { background-color: rgba(255, 80, 80, 0.1); border-color: rgba(255, 80, 80, 0.4); color: #ffabab; }
+body.dark-mode .errorBox h2 { color: inherit; }
+body.dark-mode .errorBox p { color: inherit; }
+body.dark-mode .historySection { border-top-color: #444444; }
+body.dark-mode .historyToggle { color: #f0f0f0; }
+body.dark-mode .historyToggle:hover { color: #fff; }
+body.dark-mode .historyList { border-color: #444444; }
+body.dark-mode .historyList li { border-bottom-color: #444444; }
+body.dark-mode .historyList li:hover { background-color: #3a3a3a; }
+body.dark-mode .noHistory { color: #aaaaaa; }
+body.dark-mode .noHistory:hover { background-color: transparent; }
+body.dark-mode .historyClaim { color: #e0e0e0; }
+body.dark-mode .historyTimestamp { color: #aaaaaa; }
+
+.searchResultTitle:hover {
+    text-decoration: underline;
+    color: currentColor;
+  }
+  
+  /* Override summary hover to respect current text color */
+  .sourcesDetails summary:hover {
+    color: currentColor;
+  }
+  
+  /* Ensure the toggle icon rotates based on controlled open state */
+  .sourcesDetails[open] summary svg {
+    transform: rotate(180deg);
+  }
+
+.searchResultTitle:hover,
+.sourcesDetails summary:hover,
+.historyToggle:hover {
+  text-decoration: underline;
+  color: currentColor;
+}
+
+/* Ensure the toggle icon rotates based on the open attribute */
+.sourcesDetails[open] summary svg {
+    transform: rotate(180deg);
+    transition: transform 0.2s ease;
+  }
+  
+  /* Ensure hover color uses currentColor */
+.sourcesToggle:hover,
+.historyToggle:hover {
+    color: currentColor;
+    text-decoration: underline;
+  }
+  

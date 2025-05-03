@@ -1,0 +1,209 @@
+/* Define variables */
+:root {
+    /* --- Base Variables --- */
+    --space-xs: 5px; --space-s: 10px; --space-m: 15px; --space-l: 20px; --space-xl: 25px;
+    --fs-small: 0.87em; --fs-medium: 1em; --fs-large: 1.2em;
+    --font-primary: Arial, Helvetica, sans-serif; --font-secondary: Georgia, serif;
+    --transition-fast: all 0.2s ease-in-out;
+    --shadow-standard: 0 2px 5px rgba(0,0,0,0.1);
+    --space-language-side-padding: 50px;
+
+    /* --- Light Mode Colors (Default) --- */
+    --bg-footer: #f2f2f2;
+    --border-strong: #cccccc;
+    --border-medium: #d9d9d9;
+    --border-interactive: #cccccc;
+    --text-primary: #111;
+    --text-secondary: #656565;
+    --text-link: #111;
+    --text-link-hover: #bb1919;
+    --bg-lang-button: #e6e8ea;
+    --bg-lang-hover: #d9d9d9;
+    --bg-lang-expanded: #e6e8ea;
+    --border-lang-button: #cccccc;
+    --border-lang-expanded: #d9d9d9;
+    --text-lang-button: var(--text-primary);
+    --text-lang-expanded: var(--text-primary);
+    --text-lang-expanded-link: var(--text-link);
+}
+
+body.dark-mode {
+     /* --- Dark Mode Variable Overrides --- */
+    --text-primary: #e0e0e0;
+    --text-secondary: #aaaaaa;
+    --text-link: #f0f0f0;
+    --text-link-hover: #bb1919;
+    --bg-footer: #111111;
+    --border-strong: #555555;
+    --border-medium: #444444;
+    --border-interactive: #555555; /* Use for dark buttons etc */
+    --shadow-standard: 0 2px 5px rgba(0,0,0,0.3);
+    --bg-lang-button: #2c2c2c;
+    --bg-lang-hover: #3a3a3a;
+    --bg-lang-expanded: #2c2c2c;
+    --border-lang-button: #444444;
+    --border-lang-expanded: #444444;
+    --text-lang-button: #ffffff; /* Specific white text */
+    --text-lang-expanded: #ffffff;
+    --text-lang-expanded-link: #ffffff;
+}
+
+/* --- BASE FOOTER LAYOUT --- */
+
+.siteFooter {
+  background-color: var(--bg-footer); /* Will be overridden by dark mode */
+  padding: var(--space-l) 0;
+  border-top: 1px solid var(--border-strong); /* Will be overridden */
+  color: var(--text-primary); /* Will be overridden */
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.footerContent {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 var(--space-m);
+}
+
+/* --- ROW SPACING CONTROL --- */
+.logoRow,
+.primaryNavContainer,
+.languageSectionWrapper,
+.socialRow,
+.legalNavContainer {
+    margin-bottom: var(--space-l);
+}
+.languageSectionWrapper,
+.socialRow,
+.legalNavContainer {
+    margin-bottom: var(--space-m);
+}
+.copyrightRow {
+    margin-bottom: 0;
+    margin-top: var(--space-m);
+}
+
+
+/* --- ROW SPECIFIC STYLES --- */
+
+.logoRow {}
+.footerLogo { width: 84px; height: 24px; display: block; }
+/* Apply filter directly in dark mode scope */
+body.dark-mode .footerLogo {
+    filter: brightness(0) invert(1);
+}
+
+.primaryNavContainer {}
+.primaryNav { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; column-gap: var(--space-l); row-gap: var(--space-s); line-height: 1.4; }
+.primaryNav li a {
+    text-decoration: none;
+    color: var(--text-link); /* Uses dark var in dark mode */
+    font-weight: bold;
+    font-size: var(--fs-small);
+    white-space: nowrap;
+}
+.primaryNav li a:hover {
+    text-decoration: underline;
+    color: var(--text-link-hover); /* Uses dark var in dark mode */
+}
+
+
+/* Language Section */
+.languageSectionWrapper { position: relative; width: max-content; max-width: 100%; }
+
+.languageButton {
+    background-color: var(--bg-lang-button); /* Uses dark var in dark mode */
+    border: 1px solid var(--border-lang-button); /* Uses dark var in dark mode */
+    color: var(--text-lang-button); /* Uses dark var in dark mode */
+    padding: var(--space-s) var(--space-l) var(--space-s) var(--space-m);
+    font-size: var(--fs-medium); font-weight: bold; cursor: pointer;
+    display: inline-flex; align-items: center; min-width: 200px;
+    width: auto; text-align: left; position: relative; z-index: 2;
+    box-sizing: border-box; transition: var(--transition-fast);
+}
+.languageButtonText { margin-right: var(--space-s); }
+.langIcon { font-size: 1em; flex-shrink: 0; margin-left: auto; fill: currentColor; }
+
+/* Hover state only when closed */
+.languageButton:hover:not(.languageButtonOpen) {
+    background-color: var(--bg-lang-hover); /* Uses dark var in dark mode */
+}
+
+/* Button WHEN OPEN */
+.languageButtonOpen {
+    background-color: var(--bg-lang-expanded); /* Uses dark var in dark mode */
+    border-color: var(--border-lang-expanded); /* Uses dark var in dark mode */
+    color: var(--text-lang-expanded); /* Uses dark var in dark mode */
+    border-bottom-color: transparent;
+}
+.languageButtonOpen:hover {
+    background-color: var(--bg-lang-expanded); /* No change */
+}
+
+/* Language Dropdown Content Area */
+.languageDropdownContent {
+    background-color: var(--bg-lang-expanded); /* Uses dark var in dark mode */
+    border: 1px solid var(--border-lang-expanded); /* Uses dark var in dark mode */
+    color: var(--text-lang-expanded); /* Uses dark var in dark mode */
+    border-top: none; padding: var(--space-l) 0 var(--space-xl) 0;
+    box-sizing: border-box; width: 100%; max-width: 1024px;
+    margin: 0 auto; margin-top: -1px; position: relative; z-index: 1;
+}
+
+.languageTitle {
+    font-family: var(--font-secondary); font-size: 1.5em; font-weight: bold;
+    text-align: center; margin-bottom: var(--space-xs);
+    color: var(--text-lang-expanded); /* Uses dark var in dark mode */
+    padding: 0 var(--space-language-side-padding);
+}
+.languageSubtitle {
+    font-size: var(--fs-medium); text-align: center; margin-bottom: var(--space-l);
+    color: var(--text-secondary); /* Uses dark var in dark mode */
+    padding: 0 var(--space-language-side-padding);
+}
+.languageGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-s) var(--space-l); padding: 0 var(--space-language-side-padding); }
+@media (max-width: 768px) { .languageGrid { grid-template-columns: repeat(2, 1fr); padding: 0 var(--space-language-side-padding); } }
+@media (max-width: 480px) { .languageGrid { grid-template-columns: 1fr; padding: 0 var(--space-language-side-padding); } }
+.languageColumn { list-style: none; padding: 0; margin: 0; text-align: left; }
+.languageColumn li { margin-bottom: var(--space-s); }
+.languageColumn li a {
+    text-decoration: underline; font-size: var(--fs-small); font-weight: normal; display: inline-block;
+    color: var(--text-lang-expanded-link); /* Uses dark var in dark mode */
+}
+.languageColumn li a:hover {
+    text-decoration: none;
+    color: var(--text-link-hover); /* Uses dark var in dark mode */
+}
+
+/* Rows 4, 5, 6 */
+.socialRow {
+    display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-m);
+    padding-top: var(--space-m);
+    border-top: 1px solid var(--border-medium); /* Uses dark var in dark mode */
+}
+.followText { font-weight: bold; font-size: var(--fs-medium); color: var(--text-primary); white-space: nowrap; }
+.socialLinks { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--space-m); }
+.socialLinks li a { color: var(--text-primary); text-decoration: none; display: block; line-height: 1; }
+.socialLinks li a svg { font-size: 1.3em; display: block; vertical-align: middle; }
+.socialLinks li a:hover { color: var(--text-secondary); }
+
+.legalNavContainer {}
+.legalNav { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: nowrap; column-gap: var(--space-m); line-height: 1.4; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+.legalNav::-webkit-scrollbar { display: none; }
+.legalNav li a { text-decoration: none; font-size: var(--fs-small); font-weight: bold; white-space: nowrap; color: var(--text-secondary); }
+.legalNav li a:hover { text-decoration: underline; color: var(--text-link-hover); }
+
+.copyrightRow { font-size: var(--fs-small); line-height: 1.4; color: var(--text-secondary); }
+.externalLinkInfo { font-weight: bold; text-decoration: none; color: var(--text-secondary); }
+.externalLinkInfo:hover { text-decoration: underline; color: var(--text-link-hover); }
+
+/* --- Specific Dark Mode Text/Border Overrides --- */
+/* Apply dark mode text/border colors where needed */
+body.dark-mode .followText { color: var(--text-primary); }
+body.dark-mode .socialLinks li a { color: var(--text-primary); }
+body.dark-mode .socialLinks li a:hover { color: var(--text-secondary); }
+body.dark-mode .legalNav li a { color: var(--text-secondary); }
+body.dark-mode .legalNav li a:hover { color: var(--text-link-hover); }
+body.dark-mode .copyrightRow { color: var(--text-secondary); }
+body.dark-mode .externalLinkInfo { color: var(--text-secondary); }
+body.dark-mode .externalLinkInfo:hover { color: var(--text-link-hover); }
+body.dark-mode .socialRow { border-top-color: var(--border-medium); }

@@ -1,0 +1,85 @@
+.overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--bg-overlay); z-index: 1000; opacity: 0;
+    visibility: hidden; transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+.overlay.open { opacity: 1; visibility: visible; }
+
+.sidebar {
+    position: fixed; top: 0; left: -300px; width: 300px; height: 100%;
+    background-color: var(--bg-sidebar); box-shadow: var(--shadow-standard);
+    z-index: 1001; transition: left 0.3s ease-in-out; overflow-y: auto;
+    padding-top: 45px; display: flex; flex-direction: column;
+}
+.sidebar.open { left: 0; }
+
+.closeButton {
+    position: absolute; top: var(--space-s); right: var(--space-m);
+    background: none; border: none; color: var(--text-secondary); cursor: pointer;
+    font-size: inherit; padding: var(--space-xs); line-height: 1;
+}
+/* Target SVG within the button */
+.closeButton svg {
+    font-size: 20px; /* Specific Size */
+    display: block;
+}
+.closeButton:hover { color: var(--text-primary); }
+
+.searchContainer {
+    display: flex; padding: var(--space-m) var(--space-l);
+    border-bottom: 1px solid var(--border-subtle); margin-bottom: var(--space-s);
+    flex-shrink: 0;
+}
+.searchContainer input {
+    flex-grow: 1; border: 1px solid var(--border-interactive); padding: var(--space-s);
+    font-size: var(--fs-medium); border-right: none; background-color: var(--bg-page);
+    color: var(--text-primary);
+}
+ .searchContainer input:focus { outline: none; border-color: var(--text-accent); }
+.searchContainer button {
+    padding: var(--space-s); border: 1px solid var(--border-interactive); border-left: none;
+    background-color: var(--bg-interactive); color: var(--text-primary);
+    display: flex; align-items: center; cursor: pointer;
+}
+/* Target SVG directly if react-icons used */
+.searchContainer button svg {
+    font-size: 18px; /* Specific Size */
+     display: block;
+}
+.searchContainer button:hover { background-color: var(--bg-interactive-hover); }
+
+.menuList { list-style: none; padding: 0; margin: 0; flex-grow: 1; overflow-y: auto; }
+.menuItem { border-bottom: 1px solid var(--border-subtle); }
+.menuItem:last-child { border-bottom: none; }
+
+.sectionToggle, .menuLink {
+    display: flex; justify-content: space-between; align-items: center; width: 100%;
+    padding: var(--space-m) var(--space-l); text-align: left; font-size: var(--fs-large);
+    font-weight: bold; background: none; border: none; cursor: pointer;
+    color: var(--text-primary); text-decoration: none; transition: background-color var(--transition-fast);
+    gap: var(--space-m);
+}
+.sectionToggle span { flex-grow: 1; margin-right: 0; }
+.sectionToggle:hover, .menuLink:hover { background-color: var(--bg-subtle); }
+
+/* Target SVG chevron specifically */
+.sectionToggle svg {
+    font-size: 16px; /* Specific Size */
+    flex-shrink: 0;
+    color: var(--text-subtle);
+    transition: transform 0.2s ease-in-out;
+}
+.sectionToggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+/* Active link styling */
+.menuLink.activeLink {
+   background-color: var(--bg-subtle);
+   border-left: 4px solid var(--text-accent);
+   padding-left: calc(var(--space-l) - 4px);
+}
+
+.submenu { list-style: none; padding: 0; margin: 0; background-color: var(--bg-subtle); }
+.submenu li { border-top: 1px solid var(--border-medium); }
+.subLink { display: block; padding: var(--space-s) var(--space-l) var(--space-s) var(--space-xl); font-size: var(--fs-medium); color: var(--text-secondary); text-decoration: none; transition: background-color var(--transition-fast), color var(--transition-fast); }
+.subLink:hover { background-color: var(--bg-interactive); color: var(--text-primary); }
+.subLink.activeSubLink { font-weight: bold; color: var(--text-primary); background-color: var(--bg-interactive); }

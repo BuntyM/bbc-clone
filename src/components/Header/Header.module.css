@@ -1,0 +1,116 @@
+.clonebbcHeader {
+    padding: 0 var(--space-m);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-subtle);
+    background-color: var(--bg-header);
+    position: relative;
+    z-index: 100;
+    min-height: 60px;
+    width: 100%;
+  }
+  
+  .leftControls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+    flex-shrink: 0;
+  }
+  
+  .rightControls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+    flex-shrink: 0;
+  }
+  
+  .bbcMenu,
+  .bbcSearch {
+    margin: 0;
+    padding: var(--space-s);
+    line-height: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bbcMenu img,
+  .bbcSearch img {
+      height: 22px;
+      width: auto;
+      display: block;
+  }
+  /* Specific adjustments if needed */
+  .bbcMenu img { height: 18px; }
+  
+  /* --- Logo Centering Fix --- */
+  .bbcLogoWrapper {
+    /* Allow wrapper to take space, but force centering */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 0;
+  }
+  
+  .bbcLogo {
+    width: 96px;
+    height: 28px;
+    display: block;
+  }
+  
+  /* Ensure left/right controls don't overlap logo */
+  /* This depends on logo size and control content */
+  .leftControls {
+      /* May need padding-right if content is wide */
+      /* padding-right: 100px; */
+  }
+  .rightControls {
+       /* May need padding-left if content is wide */
+      /* padding-left: 150px; */
+  }
+  /* End Logo Centering Fix */
+  
+  
+  .registerButton,
+  .signInButton {
+    font-size: var(--fs-medium);
+    padding: var(--space-s) var(--space-l);
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    line-height: 1.2;
+    border-radius: 0px;
+    white-space: nowrap;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+  }
+  
+  .registerButton {
+    background-color: var(--bg-button-primary);
+    color: var(--text-button-primary);
+  }
+  .signInButton {
+      background-color: var(--bg-button-secondary);
+      color: var(--text-button-secondary);
+      border: 1px solid var(--border-medium);
+  }
+  body.dark-mode .signInButton {
+      border: 1px solid var(--border-strong);
+  }
+  
+  .signInButton:hover,
+  .registerButton:hover {
+      opacity: 0.85;
+  }
+  
+  /* Theme toggle */
+  /* Ensure theme toggle button itself adapts */
+  .rightControls > button:last-child {
+      font-size: 1.4em;
+      padding: var(--space-xs);
+  }
