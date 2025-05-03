@@ -44,7 +44,7 @@ async function connectOrGetMcpClient() {
       mcpClient.removeAllListeners();
       console.log('FactCheck Route: Spawning MCP process:', { cmd: mcpCommand, args: mcpArgs });
       await mcpClient.connect({
-        type: "stdio",
+        type: "sse",
         command: mcpCommand,
         args: mcpArgs
       });
