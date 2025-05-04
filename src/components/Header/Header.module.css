@@ -45,7 +45,7 @@
       display: block;
   }
   /* Specific adjustments if needed */
-  .bbcMenu img { height: 18px; }
+  .bbcMenu img { height: 30px; }
   
   /* --- Logo Centering Fix --- */
   .bbcLogoWrapper {
