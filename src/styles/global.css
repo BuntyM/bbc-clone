@@ -1,27 +1,106 @@
 /* src/styles/global.css */
-@import './variables.css';
+@import './variables.css'; /* Make sure variables path is correct */
 
 /* Basic Reset */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: var(--fs-base); }
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- STICKY FOOTER SETUP --- */
+html {
+  height: 100%; /* Make html take full height */
+}
 
 body {
   font-family: var(--font-primary);
-  color: var(--text-primary); /* Use variable */
-  background-color: var(--bg-page); /* Use variable */
+  color: var(--text-primary);
+  background-color: var(--bg-page);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Add transition for background color change */
   transition: background-color 0.3s ease, color 0.3s ease;
+
+  /* Flexbox for sticky footer */
+  display: flex;
+  flex-direction: column;
+  min-height: 100%; /* Use min-height on body */
 }
 
-img { max-width: 100%; display: block; height: auto; }
+/* Target the React root element (ensure id="root" in index.html) */
+#root {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allow root to grow to fill body */
+    width: 100%;
+}
+
+/* Target the main content area rendered by App.jsx */
+/* Assumes <main> is a direct child of the structure inside #root */
+/* Adjust selector if App.jsx has other wrappers */
+#root > main {
+    flex-grow: 1; /* Make main content expand */
+    width: 100%; /* Optional */
+}
+
+/* Prevent header/nav/footer (if direct children of #root) from shrinking */
+#root > header,
+#root > nav,
+#root > footer {
+    flex-shrink: 0;
+}
+/* --- END STICKY FOOTER SETUP --- */
+
+
+/* --- Keep your existing global styles below --- */
+
+img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
 /* Optional: Dim images slightly in dark mode */
 body.dark-mode img {
-    /* filter: brightness(0.9) contrast(0.95); */ /* Uncomment to test */
+    /* filter: brightness(0.9) contrast(0.95); */
 }
 
-a { color: inherit; text-decoration: none; }
-ul { list-style: none; }
-button { font-family: inherit; cursor: pointer; border: none; background: none; padding: 0; }
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+/* --- Print Overrides --- */
+@media print {
+  /* Hide standard layout elements when printing */
+  body > div#root > header,
+  body > div#root > nav,
+  body > div#root > aside, /* Assuming Sidebar renders <aside> */
+  body > div#root > footer {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  /* Reset body/root/main for print */
+  body, #root, main {
+    margin: 0 !important; padding: 0 !important; width: 100% !important;
+    height: auto !important; overflow: visible !important;
+    background-color: #fff !important; display: block !important; /* Override flex */
+  }
+   /* Hide theme toggle specifically if needed */
+   button[class*="ThemeToggle_themeToggleButton"] {
+       display: none !important;
+   }
+}

@@ -114,10 +114,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                 <NavLink
                   to={section.path}
                   onClick={onClose}
-                  className={({ isActive }) => {
-                    const isRealPage = section.path === '/' || section.path === '/fact-check';
-                    return (isRealPage && isActive) ? `${styles.menuLink} ${styles.activeLink}` : styles.menuLink;
-                  }}
+                  className={({ isActive }) => (isActive ? `${styles.menuLink} ${styles.activeLink}` : styles.menuLink)}
                 >
                   {section.name}
                 </NavLink>
