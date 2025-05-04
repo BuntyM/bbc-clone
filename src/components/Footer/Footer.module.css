@@ -16,7 +16,6 @@
     --text-primary: #111;
     --text-secondary: #656565;
     --text-link: #111;
-    /* --text-link-hover: #111111; */ /* Removed */
     --bg-lang-button: #e6e8ea;
     --bg-lang-hover: #d9d9d9;
     --bg-lang-expanded: #e6e8ea;
@@ -32,7 +31,6 @@ body.dark-mode {
     --text-primary: #e0e0e0;
     --text-secondary: #aaaaaa;
     --text-link: #f0f0f0;
-    /* --text-link-hover: #111111; */ /* Removed */
     --bg-footer: #111111;
     --border-strong: #555555;
     --border-medium: #444444;
@@ -59,7 +57,7 @@ body.dark-mode {
 }
 
 .footerContent {
-  max-width: 1024px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--space-m);
 }
@@ -104,7 +102,6 @@ body.dark-mode .footerLogo {
 .primaryNav li a:hover {
     text-decoration: underline;
     text-decoration-color: currentColor; /* Use link's color for underline */
-    /* color: var(--text-link-hover); */ /* Removed color change on hover */
 }
 
 
@@ -173,7 +170,6 @@ body.dark-mode .footerLogo {
 .languageColumn li a:hover {
     text-decoration: underline; /* Ensure underline appears on hover */
     text-decoration-color: currentColor; /* Use link's color for underline */
-    /* color: var(--text-link-hover); */ /* Removed color change on hover */
 }
 
 /* Rows 4, 5, 6 */
@@ -195,15 +191,13 @@ body.dark-mode .footerLogo {
 .legalNav li a:hover {
     text-decoration: underline;
     text-decoration-color: currentColor; /* Use link's color for underline */
-    /* color: var(--text-link-hover); */ /* Removed color change on hover */
 }
 
 .copyrightRow { font-size: var(--fs-small); line-height: 1.4; color: var(--text-secondary); }
-.externalLinkInfo { font-weight: bold; text-decoration: none; color: var(--text-secondary); }
+.externalLinkInfo { font-weight: bold; text-decoration: none; color: #111; }
 .externalLinkInfo:hover {
     text-decoration: underline;
     text-decoration-color: currentColor; /* Use link's color for underline */
-    /* color: var(--text-link-hover); */ /* Removed color change on hover */
 }
 
 /* --- Specific Dark Mode Text/Border Overrides --- */
@@ -214,6 +208,6 @@ body.dark-mode .socialLinks li a:hover { color: var(--text-secondary); }
 body.dark-mode .legalNav li a { color: var(--text-secondary); }
 /* body.dark-mode .legalNav li a:hover { color: var(--text-link-hover); } */ /* Handled by main hover rule */
 body.dark-mode .copyrightRow { color: var(--text-secondary); }
-body.dark-mode .externalLinkInfo { color: var(--text-secondary); }
+
 /* body.dark-mode .externalLinkInfo:hover { color: var(--text-link-hover); } */ /* Handled by main hover rule */
 body.dark-mode .socialRow { border-top-color: var(--border-medium); }
