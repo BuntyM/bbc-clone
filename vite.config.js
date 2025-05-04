@@ -14,7 +14,7 @@ const apiRouteHandlerPlugin = () => {
     name: 'vite-plugin-api-route-handler',
     config(config, { mode }) {
         const env = loadEnv(mode, process.cwd(), '');
-        apiKey = env.OPENAI_API_KEY || env.GEMINI_API_KEY;
+        apiKey = env.GEMINI_API_KEY;
         ddgCommand = env.VITE_DUCKDUCKGO_MCP_COMMAND; // Load DDG command
         ddgArgs = env.VITE_DUCKDUCKGO_MCP_ARGS;       // Load DDG args
         // Set process.env vars so dynamically loaded module can access them

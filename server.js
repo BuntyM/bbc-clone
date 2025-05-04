@@ -10,9 +10,9 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3001;
-const apiKey = process.env.OPENAI_API_KEY;
+const apiKey = process.env.GEMINI_API_KEY;
 
-if (!apiKey) { console.warn("!!! WARNING: OPENAI_API_KEY not set..."); }
+if (!apiKey) { console.warn("!!! WARNING: GEMINI_API_KEY not set..."); }
 
 app.use(cors());
 app.use(express.json());

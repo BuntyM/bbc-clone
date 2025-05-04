@@ -16,7 +16,7 @@
     --text-primary: #111;
     --text-secondary: #656565;
     --text-link: #111;
-    --text-link-hover: #bb1919;
+    /* --text-link-hover: #111111; */ /* Removed */
     --bg-lang-button: #e6e8ea;
     --bg-lang-hover: #d9d9d9;
     --bg-lang-expanded: #e6e8ea;
@@ -32,7 +32,7 @@ body.dark-mode {
     --text-primary: #e0e0e0;
     --text-secondary: #aaaaaa;
     --text-link: #f0f0f0;
-    --text-link-hover: #bb1919;
+    /* --text-link-hover: #111111; */ /* Removed */
     --bg-footer: #111111;
     --border-strong: #555555;
     --border-medium: #444444;
@@ -103,7 +103,8 @@ body.dark-mode .footerLogo {
 }
 .primaryNav li a:hover {
     text-decoration: underline;
-    color: var(--text-link-hover); /* Uses dark var in dark mode */
+    text-decoration-color: currentColor; /* Use link's color for underline */
+    /* color: var(--text-link-hover); */ /* Removed color change on hover */
 }
 
 
@@ -170,8 +171,9 @@ body.dark-mode .footerLogo {
     color: var(--text-lang-expanded-link); /* Uses dark var in dark mode */
 }
 .languageColumn li a:hover {
-    text-decoration: none;
-    color: var(--text-link-hover); /* Uses dark var in dark mode */
+    text-decoration: underline; /* Ensure underline appears on hover */
+    text-decoration-color: currentColor; /* Use link's color for underline */
+    /* color: var(--text-link-hover); */ /* Removed color change on hover */
 }
 
 /* Rows 4, 5, 6 */
@@ -190,11 +192,19 @@ body.dark-mode .footerLogo {
 .legalNav { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: nowrap; column-gap: var(--space-m); line-height: 1.4; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
 .legalNav::-webkit-scrollbar { display: none; }
 .legalNav li a { text-decoration: none; font-size: var(--fs-small); font-weight: bold; white-space: nowrap; color: var(--text-secondary); }
-.legalNav li a:hover { text-decoration: underline; color: var(--text-link-hover); }
+.legalNav li a:hover {
+    text-decoration: underline;
+    text-decoration-color: currentColor; /* Use link's color for underline */
+    /* color: var(--text-link-hover); */ /* Removed color change on hover */
+}
 
 .copyrightRow { font-size: var(--fs-small); line-height: 1.4; color: var(--text-secondary); }
 .externalLinkInfo { font-weight: bold; text-decoration: none; color: var(--text-secondary); }
-.externalLinkInfo:hover { text-decoration: underline; color: var(--text-link-hover); }
+.externalLinkInfo:hover {
+    text-decoration: underline;
+    text-decoration-color: currentColor; /* Use link's color for underline */
+    /* color: var(--text-link-hover); */ /* Removed color change on hover */
+}
 
 /* --- Specific Dark Mode Text/Border Overrides --- */
 /* Apply dark mode text/border colors where needed */
@@ -202,8 +212,8 @@ body.dark-mode .followText { color: var(--text-primary); }
 body.dark-mode .socialLinks li a { color: var(--text-primary); }
 body.dark-mode .socialLinks li a:hover { color: var(--text-secondary); }
 body.dark-mode .legalNav li a { color: var(--text-secondary); }
-body.dark-mode .legalNav li a:hover { color: var(--text-link-hover); }
+/* body.dark-mode .legalNav li a:hover { color: var(--text-link-hover); } */ /* Handled by main hover rule */
 body.dark-mode .copyrightRow { color: var(--text-secondary); }
 body.dark-mode .externalLinkInfo { color: var(--text-secondary); }
-body.dark-mode .externalLinkInfo:hover { color: var(--text-link-hover); }
+/* body.dark-mode .externalLinkInfo:hover { color: var(--text-link-hover); } */ /* Handled by main hover rule */
 body.dark-mode .socialRow { border-top-color: var(--border-medium); }

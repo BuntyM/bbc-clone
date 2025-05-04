@@ -14,7 +14,7 @@ const languageColumns = [
 // <<< ACCEPT theme PROP
 const Footer = ({ theme }) => {
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
-  const footerNav = ['Home', 'News', 'Sport', 'Business', 'Innovation', 'Culture', 'Arts', 'Travel', 'Earth', 'Audio', 'Video', 'Live', 'Weather', 'BBC Shop', 'BritBox'];
+  const footerNav = ['Home', 'Fact Check', 'News', 'Sport', 'Business', 'Innovation', 'Culture', 'Arts', 'Travel', 'Earth', 'Audio', 'Video', 'Live', 'Weather', 'BBC Shop', 'BritBox'];
   const legalNav = ['Terms of Use', 'About the BBC', 'Privacy Policy', 'Cookies', 'Accessibility Help', 'Contact the BBC', 'Advertise with us', 'Do not share or sell my info', 'Contact technical support'];
   const socialLinks = [
     { Icon: FaXTwitter, label: 'X / Twitter', url: 'https://x.com/bbc' },
@@ -39,7 +39,7 @@ const Footer = ({ theme }) => {
                 <img src={logoSrc} alt="BBC Logo" className={styles.footerLogo}/>
             </Link>
         </div>
-        <nav aria-label="BBC Sections" className={styles.primaryNavContainer}> <ul className={styles.primaryNav}> {footerNav.map(item => ( <li key={item}><Link to={`/${item.toLowerCase().replace(/\s+/g, '')}`}>{item}</Link></li> ))} </ul> </nav>
+        <nav aria-label="BBC Sections" className={styles.primaryNavContainer}> <ul className={styles.primaryNav}> {footerNav.map(item => ( <li key={item}><Link to={`/${item.toLowerCase().replace(/\s+/g, '-')}`}>{item}</Link></li> ))} </ul> </nav>
         <div className={styles.languageSectionWrapper}>
             <button onClick={toggleLangDropdown} aria-haspopup="true" aria-expanded={isLangDropdownOpen} className={`${styles.languageButton} ${isLangDropdownOpen ? styles.languageButtonOpen : ''}`}>
                 <span className={styles.languageButtonText}>BBC in other languages</span>

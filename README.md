@@ -87,7 +87,7 @@ This clone implements the following functionalities:
     *   Create a `.env` file in the project root (`bbc-clone/.env`).
     *   Add your API key and MCP server details:
         ```dotenv
-        OPENAI_API_KEY=sk-YourActualOpenAISecretKeyHere
+        GEMINI_API_KEY=YourActualGoogleGeminiSecretKeyHere
         ```
 4.  **Start the Vite Development Server:**
     ```bash
@@ -104,7 +104,7 @@ This clone implements the following functionalities:
 2.  **Run the Docker Container:**
     ```bash
     docker run -p 3000:3001 \
-           -e OPENAI_API_KEY="sk-YourActualOpenAISecretKeyHere" \
+           -e GEMINI_API_KEY="YourActualGoogleGeminiSecretKeyHere" \
            --rm --name bbc-clone-container bbc-clone-app
     ```
     *   Adjust the `-e` flags to match your actual keys and MCP server command/args.

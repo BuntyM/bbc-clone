@@ -4,10 +4,10 @@ import styles from './Navigation.module.css';
 
 const navItems = [
   { name: 'Home', path: '/' },
+  { name: 'Fact Check', path: '/fact-check' },
   { name: 'News', path: '/news' },
   { name: 'Sport', path: '/sport' },
   { name: 'Business', path: '/business' },
-  { name: 'Fact Check', path: '/fact-check' },
   { name: 'Innovation', path: '/innovation' },
   { name: 'Culture', path: '/culture' },
   { name: 'Arts', path: '/arts' },
