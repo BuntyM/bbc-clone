@@ -14,14 +14,15 @@
 .sidebar.open { left: 0; }
 
 .closeButton {
-    position: absolute; top: var(--space-s); right: var(--space-m);
+    position: absolute; top: var(--space-s); left: var(--space-m); 
     background: none; border: none; color: var(--text-secondary); cursor: pointer;
     font-size: inherit; padding: var(--space-xs); line-height: 1;
 }
 /* Target SVG within the button */
 .closeButton svg {
-    font-size: 20px; /* Specific Size */
+    font-size: 28px;
     display: block;
+    stroke-width: 3.5;
 }
 .closeButton:hover { color: var(--text-primary); }
 
@@ -31,22 +32,35 @@
     flex-shrink: 0;
 }
 .searchContainer input {
-    flex-grow: 1; border: 1px solid var(--border-interactive); padding: var(--space-s);
+    flex-grow: 1; border: 1px solid var(--border-dark); /* Use theme-aware border */ padding: var(--space-s);
     font-size: var(--fs-medium); border-right: none; background-color: var(--bg-page);
     color: var(--text-primary);
 }
- .searchContainer input:focus { outline: none; border-color: var(--text-accent); }
+ .searchContainer input:focus {
+    outline: none;
+    border-color: var(--border-dark); /* Changed focus color to theme border */
+    border-width: 2px; /* Make border bold on focus */
+    padding-left: calc(var(--space-s) - 1px); /* Adjust padding to prevent layout shift */
+    padding-right: calc(var(--space-s) - 1px);
+    padding-top: calc(var(--space-s) - 1px);
+    padding-bottom: calc(var(--space-s) - 1px);
+ }
 .searchContainer button {
-    padding: var(--space-s); border: 1px solid var(--border-interactive); border-left: none;
-    background-color: var(--bg-interactive); color: var(--text-primary);
+    padding: var(--space-s); border: 1px solid var(--border-dark); /* Use theme-aware border */ /* border-left: none; Removed */
+    background-color: var(--bg-button-primary); /* Use theme-aware primary button bg */
+    color: var(--text-button-primary); /* Use theme-aware primary button text */
     display: flex; align-items: center; cursor: pointer;
+    transition: opacity var(--transition-fast); /* Add transition for hover */
 }
 /* Target SVG directly if react-icons used */
 .searchContainer button svg {
     font-size: 18px; /* Specific Size */
      display: block;
 }
-.searchContainer button:hover { background-color: var(--bg-interactive-hover); }
+.searchContainer button:hover {
+    /* background-color: var(--bg-interactive-hover); */ /* Removed specific hover bg */
+    opacity: 0.85; /* Use opacity for hover like header buttons */
+}
 
 .menuList { list-style: none; padding: 0; margin: 0; flex-grow: 1; overflow-y: auto; }
 .menuItem { border-bottom: 1px solid var(--border-subtle); }
@@ -72,13 +86,19 @@
 .sectionToggle[aria-expanded="true"] svg { transform: rotate(180deg); }
 
 /* Active link styling */
-.menuLink.activeLink {
+.menuLink.activeLink,
+.menuItem.activeParent .sectionToggle { /* Apply to active parent toggle too */
    background-color: var(--bg-subtle);
-   border-left: 4px solid var(--text-accent);
+   border-left: 4px solid var(--border-dark); /* Use theme border color */
    padding-left: calc(var(--space-l) - 4px);
 }
+/* Ensure active parent toggle doesn't double padding */
+.menuItem.activeParent .sectionToggle {
+    padding-left: calc(var(--space-l) - 4px);
+}
 
-.submenu { list-style: none; padding: 0; margin: 0; background-color: var(--bg-subtle); }
+
+.submenu { list-style: none; padding: 0; margin: 0; background-color: var(--bg-sidebar); /* Match sidebar background */ }
 .submenu li { border-top: 1px solid var(--border-medium); }
 .subLink { display: block; padding: var(--space-s) var(--space-l) var(--space-s) var(--space-xl); font-size: var(--fs-medium); color: var(--text-secondary); text-decoration: none; transition: background-color var(--transition-fast), color var(--transition-fast); }
 .subLink:hover { background-color: var(--bg-interactive); color: var(--text-primary); }

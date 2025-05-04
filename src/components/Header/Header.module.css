@@ -97,10 +97,9 @@
   .signInButton {
       background-color: var(--bg-button-secondary);
       color: var(--text-button-secondary);
-      border: 1px solid var(--border-medium);
   }
   body.dark-mode .signInButton {
-      border: 1px solid var(--border-strong);
+    
   }
   
   .signInButton:hover,

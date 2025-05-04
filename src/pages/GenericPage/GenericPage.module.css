@@ -1,0 +1,16 @@
+/* src/pages/GenericPage/GenericPage.module.css */
+.genericContainer {
+  max-width: 840px;
+  margin: var(--space-xl) auto;
+  padding: var(--space-xxl) var(--space-l); /* Add more top/bottom padding */
+  text-align: center; /* Center content */
+}
+
+.pageTitle {
+  font-family: var(--font-secondary);
+  font-size: 2.2em; /* Slightly smaller than article headline */
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: var(--space-m);
+  color: var(--text-primary); /* Use variable */
+}

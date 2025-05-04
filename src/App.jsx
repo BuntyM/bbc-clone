@@ -7,6 +7,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import HomePage from './pages/HomePage/HomePage';
 import ArticlePage from './pages/ArticlePage/ArticlePage';
 import FactCheckerPage from './pages/FactCheckerPage/FactCheckerPage';
+import GenericPage from './pages/GenericPage/GenericPage'; // Import GenericPage
 import ThemeToggle from './components/Theme/ThemeToggle';
 import { useSpeechSynthesis } from './hooks/useSpeechSynthesis'; // Import TTS Hook
 
@@ -62,6 +63,7 @@ function App() {
           <Route path="/" element={<HomePage {...ttsProps} />} />
           <Route path="/article/:articleId" element={<ArticlePage />} />
           <Route path="/fact-check" element={<FactCheckerPage />} />
+          <Route path="/page/:pageTitle" element={<GenericPage />} /> {/* Add route for GenericPage */}
           {/* <<< Ensure ttsProps are passed to fallback HomePage >>> */}
           <Route path="*" element={ <HomePage {...ttsProps} /> } />
         </Routes>

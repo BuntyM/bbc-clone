@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import styles from './Header.module.css';
 
 // Accept theme and children props
 const Header = ({ onMenuClick, theme, children }) => {
+  const navigate = useNavigate(); // Get navigate function
 
   // Determine icon paths based on the theme
   const menuIconSrc = theme === 'dark'
@@ -35,8 +36,18 @@ const Header = ({ onMenuClick, theme, children }) => {
       </div>
 
       <div className={styles.rightControls}>
-        <button className={styles.registerButton}>Register</button>
-        <button className={styles.signInButton}>Sign In</button>
+        <button
+          className={styles.registerButton}
+          onClick={() => navigate(`/page/${encodeURIComponent('Register')}`)} // Add onClick handler
+        >
+          Register
+        </button>
+        <button
+          className={styles.signInButton}
+          onClick={() => navigate(`/page/${encodeURIComponent('Sign In')}`)} // Add onClick handler
+        >
+          Sign In
+        </button>
         {/* Render ThemeToggle passed as children */}
         {children}
       </div>

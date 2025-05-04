@@ -39,17 +39,52 @@ const Footer = ({ theme }) => {
                 <img src={logoSrc} alt="BBC Logo" className={styles.footerLogo}/>
             </Link>
         </div>
-        <nav aria-label="BBC Sections" className={styles.primaryNavContainer}> <ul className={styles.primaryNav}> {footerNav.map(item => ( <li key={item}><Link to={`/${item.toLowerCase().replace(/\s+/g, '-')}`}>{item}</Link></li> ))} </ul> </nav>
+        <nav aria-label="BBC Sections" className={styles.primaryNavContainer}>
+            <ul className={styles.primaryNav}>
+                {footerNav.map(item => {
+                    const isSpecial = item === 'Home' || item === 'Fact Check';
+                    const path = isSpecial
+                        ? `/${item.toLowerCase().replace(/\s+/g, '-')}`
+                        : `/page/${encodeURIComponent(item)}`;
+                    return (
+                        <li key={item}><Link to={path}>{item}</Link></li>
+                    );
+                })}
+            </ul>
+        </nav>
         <div className={styles.languageSectionWrapper}>
             <button onClick={toggleLangDropdown} aria-haspopup="true" aria-expanded={isLangDropdownOpen} className={`${styles.languageButton} ${isLangDropdownOpen ? styles.languageButtonOpen : ''}`}>
                 <span className={styles.languageButtonText}>BBC in other languages</span>
                 {isLangDropdownOpen ? <FaCaretUp className={styles.langIcon} /> : <FaCaretDown className={styles.langIcon} />}
             </button>
-            {isLangDropdownOpen && ( <div className={styles.languageDropdownContent}> <h2 className={styles.languageTitle}>The BBC is in multiple languages</h2> <p className={styles.languageSubtitle}>Read the BBC In your own language</p> <div className={styles.languageGrid}> {languageColumns.map((column, colIndex) => ( <ul key={colIndex} className={styles.languageColumn}> {column.map(lang => ( <li key={lang.name}><a href={lang.href}>{lang.name}</a></li> ))} </ul> ))} </div> </div> )}
+            {isLangDropdownOpen && (
+                <div className={styles.languageDropdownContent}>
+                    <h2 className={styles.languageTitle}>The BBC is in multiple languages</h2>
+                    <p className={styles.languageSubtitle}>Read the BBC In your own language</p>
+                    <div className={styles.languageGrid}>
+                        {languageColumns.map((column, colIndex) => (
+                            <ul key={colIndex} className={styles.languageColumn}>
+                                {column.map(lang => (
+                                    <li key={lang.name}>
+                                        {/* Changed to Link */}
+                                        <Link to={`/page/${encodeURIComponent(lang.name)}`}>{lang.name}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
         <div className={styles.socialRow}> <span className={styles.followText}>Follow BBC on:</span> <ul className={styles.socialLinks}> {socialLinks.map(({ Icon, label, url }) => ( <li key={label}> <a href={url} target="_blank" rel="noopener noreferrer" aria-label={`Follow BBC on ${label}`}> <Icon /> </a> </li> ))} </ul> </div>
-        <nav aria-label="Footer Legal Links" className={styles.legalNavContainer}> <ul className={styles.legalNav}> {legalNav.map(item => ( <li key={item}><Link to="/legal">{item}</Link></li> ))} </ul> </nav>
-        <div className={styles.copyrightRow}> Copyright © {new Date().getFullYear()} BBC. All rights reserved. The BBC is not responsible for the content of external sites. <a href="#" className={styles.externalLinkInfo}>Read about our approach to external linking.</a> </div>
+        <nav aria-label="Footer Legal Links" className={styles.legalNavContainer}>
+            <ul className={styles.legalNav}>
+                {legalNav.map(item => (
+                    <li key={item}><Link to={`/page/${encodeURIComponent(item)}`}>{item}</Link></li>
+                ))}
+            </ul>
+        </nav>
+        <div className={styles.copyrightRow}> Copyright © {new Date().getFullYear()} BBC. All rights reserved. The BBC is not responsible for the content of external sites. {/* Changed to Link */} <Link to={`/page/${encodeURIComponent('External Linking Approach')}`} className={styles.externalLinkInfo}>Read about our approach to external linking.</Link> </div>
       </div>
     </footer>
   );

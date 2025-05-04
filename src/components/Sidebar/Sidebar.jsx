@@ -1,36 +1,42 @@
 import React, { useState } from 'react';
 import styles from './Sidebar.module.css';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom'; // Import useNavigate and useLocation
 import { FiX, FiSearch, FiChevronDown, FiChevronUp } from 'react-icons/fi';
+
+// Helper function to generate generic page path
+const getGenericPath = (title) => `/page/${encodeURIComponent(title)}`;
 
 // <<< DEFINE OR IMPORT SECTIONS DATA HERE
 const sections = [
     { name: 'Home', path: '/' },
-    { name: 'News', path: '/news', subItems: [ /* Add subitems if needed */ ] },
-    { name: 'Sport', path: '/sport', subItems: [ /* Add subitems if needed */ ] },
-    {
+    { name: 'Fact Check', path: '/fact-check' }, // Added Fact Check
+    { name: 'News', path: getGenericPath('News'), subItems: [ /* Add subitems if needed */ ] },
+    { name: 'Sport', path: getGenericPath('Sport'), subItems: [ /* Add subitems if needed */ ] },
+    { // Updated Business section paths
         name: 'Business',
-        path: '/business',
+        path: getGenericPath('Business'),
         subItems: [
-            { name: 'Business', path: '/business' },
-            { name: 'Executive Lounge', path: '/business/executive-lounge' },
-            { name: 'Technology of Business', path: '/business/technology' },
-            { name: 'Future of Business', path: '/business/future' },
+            { name: 'Business', path: getGenericPath('Business') },
+            { name: 'Executive Lounge', path: getGenericPath('Executive Lounge') },
+            { name: 'Technology of Business', path: getGenericPath('Technology of Business') },
+            { name: 'Future of Business', path: getGenericPath('Future of Business') },
         ]
     },
-    { name: 'Innovation', path: '/innovation', subItems: [ /* Add subitems if needed */ ] },
-    { name: 'Culture', path: '/culture', subItems: [ /* Add subitems if needed */ ] },
-    { name: 'Arts', path: '/arts', subItems: [ /* Add subitems if needed */ ] },
-    { name: 'Travel', path: '/travel', subItems: [ /* Add subitems if needed */ ] },
-    { name: 'Earth', path: '/earth', subItems: [ /* Add subitems if needed */ ] },
-    { name: 'Audio', path: '/audio', subItems: [ /* Add subitems if needed */ ] },
-    { name: 'Video', path: '/video', subItems: [ /* Add subitems if needed */ ] },
-    { name: 'Live', path: '/live', subItems: [ /* Add subitems if needed */ ] },
-    { name: 'Weather', path: '/weather', subItems: [] }, // Example without subitems
+    { name: 'Innovation', path: getGenericPath('Innovation'), subItems: [ /* Add subitems if needed */ ] },
+    { name: 'Culture', path: getGenericPath('Culture'), subItems: [ /* Add subitems if needed */ ] },
+    { name: 'Arts', path: getGenericPath('Arts'), subItems: [ /* Add subitems if needed */ ] },
+    { name: 'Travel', path: getGenericPath('Travel'), subItems: [ /* Add subitems if needed */ ] },
+    { name: 'Earth', path: getGenericPath('Earth'), subItems: [ /* Add subitems if needed */ ] },
+    { name: 'Audio', path: getGenericPath('Audio'), subItems: [ /* Add subitems if needed */ ] },
+    { name: 'Video', path: getGenericPath('Video'), subItems: [ /* Add subitems if needed */ ] },
+    { name: 'Live', path: getGenericPath('Live'), subItems: [ /* Add subitems if needed */ ] },
+    { name: 'Weather', path: getGenericPath('Weather'), subItems: [] }, // Example without subitems
     // Add other sections as needed
 ];
 
 const Sidebar = ({ isOpen, onClose }) => {
+  const navigate = useNavigate(); // Get navigate function
+  const location = useLocation(); // Get location object
   const [openSections, setOpenSections] = useState({});
 
   const toggleSection = (sectionName) => {
@@ -53,16 +59,29 @@ const Sidebar = ({ isOpen, onClose }) => {
 
         <div className={styles.searchContainer}>
             <input type="text" placeholder="Search news, topics and more" />
-            <button aria-label="Submit search"><FiSearch size={20} /></button>
+            <button
+              aria-label="Submit search"
+              onClick={() => {
+                navigate(getGenericPath('Search Results'));
+                onClose(); // Close sidebar after search
+              }}
+            >
+              <FiSearch size={20} />
+            </button>
         </div>
 
         {/* <<< ENSURE THIS MAP RENDERS */}
         <ul className={styles.menuList}>
-          {sections.map((section) => (
-            <li key={section.name} className={styles.menuItem}>
-              {(section.subItems && section.subItems.length > 0) ? (
-                <>
-                  <button
+          {sections.map((section) => {
+            // Check if any subitem path matches the start of the current location pathname
+            const isParentActive = section.subItems && section.subItems.length > 0 &&
+              section.subItems.some(subItem => location.pathname.startsWith(subItem.path) && subItem.path !== '/'); // Avoid matching root path
+
+            return (
+              <li key={section.name} className={`${styles.menuItem} ${isParentActive ? styles.activeParent : ''}`}>
+                {(section.subItems && section.subItems.length > 0) ? (
+                  <>
+                    <button
                     onClick={() => toggleSection(section.name)}
                     className={styles.sectionToggle}
                     aria-expanded={!!openSections[section.name]}
@@ -75,9 +94,14 @@ const Sidebar = ({ isOpen, onClose }) => {
                       {section.subItems.map((subItem) => (
                         <li key={subItem.name}>
                           <NavLink
+                            // Path is already updated in the sections array
                             to={subItem.path}
                             onClick={onClose}
-                            className={({ isActive }) => isActive ? `${styles.subLink} ${styles.activeSubLink}` : styles.subLink}
+                            // Only apply active style if it's a real page (Home/Fact Check)
+                            className={({ isActive }) => {
+                                const isRealPage = subItem.path === '/' || subItem.path === '/fact-check';
+                                return (isRealPage && isActive) ? `${styles.subLink} ${styles.activeSubLink}` : styles.subLink;
+                            }}
                           >
                             {subItem.name}
                           </NavLink>
@@ -88,15 +112,21 @@ const Sidebar = ({ isOpen, onClose }) => {
                 </>
               ) : (
                 <NavLink
+                  // Path is already updated in the sections array
                   to={section.path}
                   onClick={onClose}
-                  className={({ isActive }) => isActive ? `${styles.menuLink} ${styles.activeLink}` : styles.menuLink}
+                  // Only apply active style if it's a real page (Home/Fact Check)
+                  className={({ isActive }) => {
+                      const isRealPage = section.path === '/' || section.path === '/fact-check';
+                      return (isRealPage && isActive) ? `${styles.menuLink} ${styles.activeLink}` : styles.menuLink;
+                  }}
                 >
                   {section.name}
                 </NavLink>
               )}
             </li>
-          ))}
+            ); // Added semicolon here
+          })}
         </ul>
         {/* <<< END OF MAP */}
       </nav>
