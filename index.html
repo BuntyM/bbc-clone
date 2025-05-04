@@ -2,9 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" /> 
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BBC Clone</title> 
+    <title>BBC Clone</title>
+    <script>
+      function setFavicon() {
+        const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const favicon = document.querySelector('link[rel="icon"]');
+        if (isDarkMode) {
+          favicon.href = '/images/bbc-fav-icon.png';
+        } else {
+          favicon.href = '/images/bbc-fav-icon.png';
+        }
+      }
+
+      setFavicon(); // Set the favicon on page load
+
+      // Observe changes to the color scheme
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setFavicon);
+    </script>
   </head>
   <body>
     <div id="root"></div>
