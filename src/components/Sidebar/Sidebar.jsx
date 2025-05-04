@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './Sidebar.module.css';
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom'; // Import useNavigate and useLocation
 import { FiX, FiSearch, FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { FaBusinessTime } from "react-icons/fa";
 
 // Helper function to generate generic page path
 const getGenericPath = (title) => `/page/${encodeURIComponent(title)}`;
@@ -78,29 +79,28 @@ const Sidebar = ({ isOpen, onClose }) => {
               section.subItems.some(subItem => location.pathname.startsWith(subItem.path) && subItem.path !== '/'); // Avoid matching root path
 
             return (
-              <li key={section.name} className={`${styles.menuItem} ${isParentActive ? styles.activeParent : ''}`}>
-                {(section.subItems && section.subItems.length > 0) ? (
-                  <>
-                    <button
+            <li key={section.name} className={`${styles.menuItem} ${isParentActive ? styles.activeParent : ''}`}>
+              {(section.subItems && section.subItems.length > 0) ? (
+                <>
+                  <button
                     onClick={() => toggleSection(section.name)}
                     className={styles.sectionToggle}
                     aria-expanded={!!openSections[section.name]}
                   >
                     <span>{section.name}</span>
-                    {openSections[section.name] ? <FiChevronUp /> : <FiChevronDown />}
+                    {/* Use just one icon type that will rotate via CSS */}
+                    <FiChevronDown size={section.name === 'Business' ? 20 : 16} />
                   </button>
                   {openSections[section.name] && (
                     <ul className={styles.submenu}>
                       {section.subItems.map((subItem) => (
                         <li key={subItem.name}>
                           <NavLink
-                            // Path is already updated in the sections array
                             to={subItem.path}
                             onClick={onClose}
-                            // Only apply active style if it's a real page (Home/Fact Check)
                             className={({ isActive }) => {
-                                const isRealPage = subItem.path === '/' || subItem.path === '/fact-check';
-                                return (isRealPage && isActive) ? `${styles.subLink} ${styles.activeSubLink}` : styles.subLink;
+                              const isRealPage = subItem.path === '/' || subItem.path === '/fact-check';
+                              return (isRealPage && isActive) ? `${styles.subLink} ${styles.activeSubLink}` : styles.subLink;
                             }}
                           >
                             {subItem.name}
@@ -112,20 +112,18 @@ const Sidebar = ({ isOpen, onClose }) => {
                 </>
               ) : (
                 <NavLink
-                  // Path is already updated in the sections array
                   to={section.path}
                   onClick={onClose}
-                  // Only apply active style if it's a real page (Home/Fact Check)
                   className={({ isActive }) => {
-                      const isRealPage = section.path === '/' || section.path === '/fact-check';
-                      return (isRealPage && isActive) ? `${styles.menuLink} ${styles.activeLink}` : styles.menuLink;
+                    const isRealPage = section.path === '/' || section.path === '/fact-check';
+                    return (isRealPage && isActive) ? `${styles.menuLink} ${styles.activeLink}` : styles.menuLink;
                   }}
                 >
                   {section.name}
                 </NavLink>
               )}
             </li>
-            ); // Added semicolon here
+          );
           })}
         </ul>
         {/* <<< END OF MAP */}

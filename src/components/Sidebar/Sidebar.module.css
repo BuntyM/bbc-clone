@@ -17,6 +17,7 @@
     position: absolute; top: var(--space-s); left: var(--space-m); 
     background: none; border: none; color: var(--text-secondary); cursor: pointer;
     font-size: inherit; padding: var(--space-xs); line-height: 1;
+    font-weight: bold; /* Make the button text bold */
 }
 /* Target SVG within the button */
 .closeButton svg {
@@ -69,7 +70,8 @@
 .sectionToggle, .menuLink {
     display: flex; justify-content: space-between; align-items: center; width: 100%;
     padding: var(--space-m) var(--space-l); text-align: left; font-size: var(--fs-large);
-    font-weight: bold; background: none; border: none; cursor: pointer;
+    font-weight: bold; /* Make the text bold */
+    background: none; border: none; cursor: pointer;
     color: var(--text-primary); text-decoration: none; transition: background-color var(--transition-fast);
     gap: var(--space-m);
 }
@@ -78,10 +80,11 @@
 
 /* Target SVG chevron specifically */
 .sectionToggle svg {
-    font-size: 16px; /* Specific Size */
+    font-size: 30px; /* Specific Size */
     flex-shrink: 0;
-    color: var(--text-subtle);
+    color: var(--text-primary);
     transition: transform 0.2s ease-in-out;
+    stroke-width: 3.5;
 }
 .sectionToggle[aria-expanded="true"] svg { transform: rotate(180deg); }
 
@@ -89,17 +92,17 @@
 .menuLink.activeLink,
 .menuItem.activeParent .sectionToggle { /* Apply to active parent toggle too */
    background-color: var(--bg-subtle);
-   border-left: 4px solid var(--border-dark); /* Use theme border color */
-   padding-left: calc(var(--space-l) - 4px);
+   border-left: 6px solid var(--border-dark); /* Increased width */
+   padding-left: calc(var(--space-l) - 6px); /* Adjust padding to match */
 }
 /* Ensure active parent toggle doesn't double padding */
 .menuItem.activeParent .sectionToggle {
-    padding-left: calc(var(--space-l) - 4px);
+    padding-left: calc(var(--space-l) - 6px); /* Match the border-left width */
 }
 
 
 .submenu { list-style: none; padding: 0; margin: 0; background-color: var(--bg-sidebar); /* Match sidebar background */ }
 .submenu li { border-top: 1px solid var(--border-medium); }
-.subLink { display: block; padding: var(--space-s) var(--space-l) var(--space-s) var(--space-xl); font-size: var(--fs-medium); color: var(--text-secondary); text-decoration: none; transition: background-color var(--transition-fast), color var(--transition-fast); }
+.subLink { display: block; padding: var(--space-s) var(--space-l) var(--space-s) var(--space-xl); font-size: var(--fs-medium); color: var(--text-primary); /* Use theme-aware text color */ text-decoration: none; transition: background-color var(--transition-fast), color var(--transition-fast); }
 .subLink:hover { background-color: var(--bg-interactive); color: var(--text-primary); }
 .subLink.activeSubLink { font-weight: bold; color: var(--text-primary); background-color: var(--bg-interactive); }
